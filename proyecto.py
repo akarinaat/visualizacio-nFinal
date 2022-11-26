@@ -2,7 +2,6 @@ import pandas as pd
 import streamlit as st
 from pandasql import sqldf
 
-pysqldf = lambda q: sqldf(q, globals())
 df = pd.read_csv('dataset_Facebook.csv', sep=';')
 clean_df = df.fillna(0)
 clean_df.columns = clean_df.columns.str.replace(' ','_')
@@ -22,9 +21,5 @@ st.write(total_reach)
 
 
 
-# def display():
-#     st.title("Hello world")
-
-# display()
 
 

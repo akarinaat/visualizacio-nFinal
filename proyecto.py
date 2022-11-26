@@ -25,6 +25,8 @@ from clean_df
 
  ''')
 
+# Número de personas que hicieron click en cualquier lado del post 
+
 status = sqldf('''
 select count(Lifetime_engaged_users) as [Interacciones por estatus]
 from clean_df 
@@ -44,9 +46,36 @@ where Type = 'Link'
  ''')
 
 video = sqldf('''
-select count(Lifetime_engaged_users) as [Interacciones por foto]
+select count(Lifetime_engaged_users) as [Interaccion de usuarios únicos por video]
 from clean_df 
 where Type = 'Video'
+ ''')
+
+
+#sacar el total de interacciones por tipo
+inter_video = sqldf('''
+select sum(Total_Interactions) as [Interacciones por video]
+from clean_df 
+where Type = 'Video'
+ ''')
+
+inter_photo = sqldf('''
+select sum(Total_Interactions) as [Interacciones por foto]
+from clean_df 
+where Type = 'Photo'
+ ''')
+
+inter_status = sqldf('''
+select sum(Total_Interactions) as [Interacciones por status]
+from clean_df 
+where Type = 'Status'
+ ''')
+
+
+inter_link = sqldf('''
+select sum(Total_Interactions) as [Interacciones por link]
+from clean_df 
+where Type = 'Link'
  ''')
 
 
@@ -56,3 +85,7 @@ st.write(status)
 st.write(photo)
 st.write(link)
 st.write(video)
+st.write(inter_video)
+st.write(inter_photo)
+st.write(inter_status)
+st.write(inter_link)

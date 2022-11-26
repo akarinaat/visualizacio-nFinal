@@ -25,6 +25,8 @@ from clean_df
 
  ''')
 
+st.radio('Tipo de interacciones',tipos_interracciones)
+
 # Número de personas que hicieron click en cualquier lado del post 
 
 status = sqldf('''

@@ -67,40 +67,42 @@ where Type = 'Link'
 group by [Post_Month]
  ''')
 
+colors = ['#E98580']
+colors2 = ['#B4846C']
 if op_radio == 'Photo':
      
-        fig = px.scatter(inter_photo, y="Interacciones por foto", x="Mes")
+        fig = px.scatter(inter_photo, y="Interacciones por foto", x="Mes", color_discrete_sequence=colors)
         fig.update_traces(marker_size=10)
         st.plotly_chart(fig)
 
-        fig2 = px.histogram(inter_photo, x="Interacciones por foto")
+        fig2 = px.histogram(inter_photo, x="Interacciones por foto", color_discrete_sequence=colors2)
         st.plotly_chart(fig2)
 
 elif op_radio == 'Status':
 
-        fig = px.scatter(inter_status, y="Interacciones por status", x="Mes")
+        fig = px.scatter(inter_status, y="Interacciones por status", x="Mes", color_discrete_sequence=colors)
         fig.update_traces(marker_size=10)
         st.plotly_chart(fig)
 
-        fig2 = px.histogram(inter_status, x="Interacciones por status")
+        fig2 = px.histogram(inter_status, x="Interacciones por status", color_discrete_sequence=colors2)
         st.plotly_chart(fig2)
 
 elif op_radio == 'Link':
 
-        fig = px.scatter(inter_link, y="Interacciones por link", x="Mes")
+        fig = px.scatter(inter_link, y="Interacciones por link", x="Mes", color_discrete_sequence=colors)
         fig.update_traces(marker_size=10)
         st.plotly_chart(fig)
 
-        fig2 = px.histogram(inter_link, x="Interacciones por link")
+        fig2 = px.histogram(inter_link, x="Interacciones por link", color_discrete_sequence=colors2)
         st.plotly_chart(fig2)
 
 elif op_radio == 'Video':
 
-        fig = px.scatter(inter_video, y="Interacciones por video", x="Mes")
+        fig = px.scatter(inter_video, y="Interacciones por video", x="Mes", color_discrete_sequence=colors)
         fig.update_traces(marker_size=10)
         st.plotly_chart(fig)
 
-        fig2 = px.histogram(inter_video, x="Interacciones por video")
+        fig2 = px.histogram(inter_video, x="Interacciones por video", color_discrete_sequence=colors2)
         st.plotly_chart(fig2)
 
 # # Número de interacciones totales por mes por lifetime engaged users

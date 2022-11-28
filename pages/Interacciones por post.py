@@ -68,17 +68,40 @@ group by [Post_Month]
  ''')
 
 if op_radio == 'Photo':
-        fig = px.histogram(inter_photo, x="Interacciones por foto")
+     
+        fig = px.scatter(inter_photo, y="Interacciones por foto", x="Mes")
+        fig.update_traces(marker_size=10)
         st.plotly_chart(fig)
+
+        fig2 = px.histogram(inter_photo, x="Interacciones por foto")
+        st.plotly_chart(fig2)
+
 elif op_radio == 'Status':
-        fig = px.histogram(inter_status, x="Interacciones por status")
+
+        fig = px.scatter(inter_status, y="Interacciones por status", x="Mes")
+        fig.update_traces(marker_size=10)
         st.plotly_chart(fig)
+
+        fig2 = px.histogram(inter_status, x="Interacciones por status")
+        st.plotly_chart(fig2)
+
 elif op_radio == 'Link':
-        fig = px.histogram(inter_link, x="Interacciones por link")
+
+        fig = px.scatter(inter_link, y="Interacciones por link", x="Mes")
+        fig.update_traces(marker_size=10)
         st.plotly_chart(fig)
+
+        fig2 = px.histogram(inter_link, x="Interacciones por link")
+        st.plotly_chart(fig2)
+
 elif op_radio == 'Video':
-        fig = px.histogram(inter_video, x="Interacciones por video")
+
+        fig = px.scatter(inter_video, y="Interacciones por video", x="Mes")
+        fig.update_traces(marker_size=10)
         st.plotly_chart(fig)
+
+        fig2 = px.histogram(inter_video, x="Interacciones por video")
+        st.plotly_chart(fig2)
 
 # # Número de interacciones totales por mes por lifetime engaged users
     

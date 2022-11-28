@@ -37,18 +37,21 @@ day[day.columns[0]] = day[day.columns[0]].replace([1,2,3,4,5,6,7], weekday_names
 # Select box hora, dia, mes
 option = st.selectbox('Selecciona una opcion', ('Hora', 'Dia', 'Mes'))
 
+# Color palette
+color_palette = ['#7D5A50', '#B4846C', '#E5B299', '#FCDEC0']
+
 # Plot
 if option == 'Dia':
-    fig = px.line(day, x=day.columns[0], y=day.columns[1])
+    fig = px.line(day, x=day.columns[0], y=day.columns[1], color_discrete_sequence=['#7D5A50'] )
     fig.update_layout(title='Interacciones por dia', xaxis_title='Dia', yaxis_title='Interacciones')
     st.plotly_chart(fig)
 
 elif option == 'Mes':
-    fig = px.line(month, x=month.columns[0], y=month.columns[1])
+    fig = px.line(month, x=month.columns[0], y=month.columns[1], color_discrete_sequence=['#7D5A50'])
     fig.update_layout(title='Interacciones por mes', xaxis_title='Mes', yaxis_title='Interacciones')
     st.plotly_chart(fig)
 
 elif option == 'Hora':
-    fig = px.line(hour, x=hour.columns[0], y=hour.columns[1])
+    fig = px.line(hour, x=hour.columns[0], y=hour.columns[1], color_discrete_sequence=['#7D5A50'])
     fig.update_layout(title='Interacciones por hora', xaxis_title='Hora', yaxis_title='Interacciones')
     st.plotly_chart(fig)

@@ -11,15 +11,6 @@ clean_df.columns = clean_df.columns.str.replace(' ', '_')
 
 
 
-# Post type 
-# tipos_interracciones = sqldf('''
-# select distinct Type as [Tipos de interaccion]
-# from clean_df 
-
-#  ''')
-
-
-
 st.title('Número de personas que hicieron click en el post (Usuarios únicos)')
 
 # Unique users interactions per post
@@ -35,39 +26,59 @@ select distinct Type from clean_df
 ''')
 
 # Pie chart
-fig = px.pie(interacciones_tipo, values='Interacciones', names='Tipo')
+fig = px.pie(interacciones_tipo, values='Interacciones', names='Tipo', color_discrete_sequence=px.colors.sequential.RdBu)
 st.plotly_chart(fig)
 
 
+st.title('Suma total de las interacciones')
+
 # Radio
-st.radio('Tipo de interacciones',tipos)
+op_radio= st.radio('Tipo de interacciones',tipos)
+
+
 
 #sacar el total de interacciones por tipo
 inter_video = sqldf('''
-select sum(Total_Interactions) as [Interacciones por video]
+select distinct [Post_Month] as Mes, sum(Total_Interactions) as [Interacciones por video]
 from clean_df 
 where Type = 'Video'
+group by [Post_Month]
  ''')
 
 inter_photo = sqldf('''
-select sum(Total_Interactions) as [Interacciones por foto]
+select distinct [Post_Month] as Mes, sum(Total_Interactions) as [Interacciones por foto]
 from clean_df 
 where Type = 'Photo'
+group by [Post_Month]
  ''')
 
 inter_status = sqldf('''
-select sum(Total_Interactions) as [Interacciones por status]
+select distinct [Post_Month] as Mes, sum(Total_Interactions) as [Interacciones por status]
 from clean_df 
 where Type = 'Status'
+group by [Post_Month]
  ''')
 
 
 inter_link = sqldf('''
-select sum(Total_Interactions) as [Interacciones por link]
+select distinct [Post_Month] as Mes, sum(Total_Interactions) as [Interacciones por link]
 from clean_df 
 where Type = 'Link'
+group by [Post_Month]
  ''')
 
+if op_radio == 'Photo':
+        fig = px.histogram(inter_photo, x="Interacciones por foto")
+        st.plotly_chart(fig)
+elif op_radio == 'Status':
+        fig = px.histogram(inter_status, x="Interacciones por status")
+        st.plotly_chart(fig)
+elif op_radio == 'Link':
+        fig = px.histogram(inter_link, x="Interacciones por link")
+        st.plotly_chart(fig)
+elif op_radio == 'Video':
+        fig = px.histogram(inter_video, x="Interacciones por video")
+        st.plotly_chart(fig)
 
 # # Número de interacciones totales por mes por lifetime engaged users
     
@@ -83,12 +94,12 @@ where Type = 'Link'
 
 
 
-st.write(interacciones_tipo)
+#st.write(interacciones_tipo)
 
-st.title('Suma total de las interacciones')
-st.write(inter_video)
-st.write(inter_photo)
-st.write(inter_status)
-st.write(inter_link)
+
+# st.write(inter_video)
+# st.write(inter_photo)
+# st.write(inter_status)
+# st.write(inter_link)
 
 
